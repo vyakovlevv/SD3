@@ -1,4 +1,5 @@
 using FileStorageService.Application;
+using FileStorageService.Application.Interfaces;
 using FileStorageService.Infrastructure.Clients;
 using FileStorageService.Infrastructure.Data;
 using FileStorageService.Presentation;
@@ -18,7 +19,7 @@ public class Program
         var analysisBaseUrl = builder.Configuration.GetValue<string>("AnalysisService:BaseUrl")
                               ?? "http://localhost:5140";
 
-        builder.Services.AddHttpClient<AnalysisClient>(client =>
+        builder.Services.AddHttpClient<IAnalysisClient>(client =>
         {
             client.BaseAddress = new Uri(analysisBaseUrl);
         });

@@ -1,10 +1,13 @@
 ﻿using System.Net.Http.Json;
+using FileStorageService.Application.Interfaces;
 
 namespace FileStorageService.Infrastructure.Clients;
 
-public class AnalysisClient
+
+public class AnalysisClient : IAnalysisClient
 {
     private readonly HttpClient _http;
+
 
     public AnalysisClient(HttpClient http)
     {
@@ -13,7 +16,8 @@ public class AnalysisClient
 
     public async Task SendForAnalysisAsync(Guid submissionId)
     {
-        var response = await _http.PostAsync($"/analyze/{submissionId}", null);
+        var response = await _http.PostAsJsonAsync("http://fileanalysisservice:8080/reports/upload",
+            new { SubmissionId = submissionId });
 
         if (!response.IsSuccessStatusCode)
         {

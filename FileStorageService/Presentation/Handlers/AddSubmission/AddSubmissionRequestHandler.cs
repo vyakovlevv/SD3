@@ -3,7 +3,7 @@ using FileStorageService.Infrastructure.Clients;
 
 namespace FileStorageService.Presentation.Handlers.AddSubmission;
 
-public class AddSubmissionRequestHandler(ISubmissionService service, AnalysisClient analysisClient) : IAddSubmissionRequestHandler
+public class AddSubmissionRequestHandler(ISubmissionService service, IAnalysisClient analysisClient) : IAddSubmissionRequestHandler
 {
     public async Task<AddSubmissionResponse> Handle(AddSubmissionRequest req)
     {
