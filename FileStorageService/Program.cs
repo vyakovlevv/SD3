@@ -19,7 +19,7 @@ public class Program
         var analysisBaseUrl = builder.Configuration["Services:FileAnalysis"]
                               ?? "http://localhost:5140";
 
-        builder.Services.AddHttpClient<AnalysisClient>(client =>
+        builder.Services.AddHttpClient<IAnalysisClient>(client =>
         {
             client.BaseAddress = new Uri(analysisBaseUrl);
         });
