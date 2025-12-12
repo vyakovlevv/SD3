@@ -10,7 +10,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Configuration
 var fileStorageBase = builder.Configuration.GetValue<string>("FileStorage:BaseUrl") ?? "http://localhost:5194";
-var conn = builder.Configuration.GetConnectionString("DefaultConnection") ?? "Data Source=DB/reports.db";
+var conn = "Data Source=/db/reports.db";
 
 // Db
 builder.Services.AddDbContext<AppDbContext>(opt =>

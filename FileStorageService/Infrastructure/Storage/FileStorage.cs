@@ -8,7 +8,7 @@ public class FileStorage : IFileRepository
 
     public FileStorage()
     {
-        _root = Path.Combine(Directory.GetCurrentDirectory(), "storage");
+        _root = "/storage";
         Directory.CreateDirectory(_root);
     }
 
