@@ -1,5 +1,6 @@
 ﻿using FileStorageService.Application.Interfaces;
 using FileStorageService.Application.Services;
+using FileStorageService.Infrastructure.Clients;
 using FileStorageService.Infrastructure.Repositories;
 using FileStorageService.Infrastructure.Storage;
 
@@ -12,6 +13,7 @@ public static class ServiceCollectionExtensions
         services.AddScoped<IFileRepository, FileStorage>();
         services.AddScoped<ISubmissionService, SubmissionService>();
         services.AddScoped<ISubmissionRepository, SubmissionRepository>();
+        services.AddScoped<IAnalysisClient, AnalysisClient>();
         return services;
     }
 }

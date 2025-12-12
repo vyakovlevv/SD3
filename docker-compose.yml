@@ -1,4 +1,14 @@
 ﻿services:
+  filestorageservice:
+    build:
+      context: .
+      dockerfile: FileStorageService/Dockerfile
+    ports:
+      - "8081:8080"
+    volumes:
+      - ./data/db:/db
+      - ./data/storage:/storage
+      
   fileanalysisservice:
     build:
       context: .
@@ -9,17 +19,6 @@
       - ./data/db:/db
       - ./data/storage:/storage
   
-  
-  filestorageservice:
-    build:
-      context: .
-      dockerfile: FileStorageService/Dockerfile
-    ports:
-      - "8081:8080"
-    volumes:
-      - ./data/db:/db
-    
-
   apigateway:
     build:
       context: .

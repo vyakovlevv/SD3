@@ -1,6 +1,8 @@
 ﻿namespace ApiGateway.Services;
 
-public class ProxyService
+
+
+public class ProxyService : IProxyService
 {
     private readonly HttpClient _http;
 
@@ -27,5 +29,18 @@ public class ProxyService
 
         var respContent = await response.Content.ReadAsByteArrayAsync();
         return Results.Bytes(respContent, response.Content.Headers.ContentType?.ToString());
+    }
+    
+    public async Task<IResult> ForwardPostJson<T>(string path, T body)
+    {
+        var response = await _http.PostAsJsonAsync(path, body);
+
+        var bytes = await response.Content.ReadAsByteArrayAsync();
+        var contentType = response.Content.Headers.ContentType?.ToString();
+
+        return Results.Bytes(
+            bytes,
+            contentType: contentType
+        );
     }
 }

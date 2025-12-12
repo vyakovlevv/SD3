@@ -20,9 +20,4 @@
       </Content>
     </ItemGroup>
 
-    <ItemGroup>
-      <Folder Include="DB\" />
-      <Folder Include="Presentation\Handlers\" />
-    </ItemGroup>
-
 </Project>

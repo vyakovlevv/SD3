@@ -4,17 +4,7 @@ using FileAnalysisService.Application.DTO;
 
 namespace FileAnalysisService.Infrastructure.Clients;
 
-// DTO, эквивалентный SubmissionDto в FileStorageService
-public record FileStorageSubmissionDto(Guid Id, Guid Student, Guid TaskId, string FileName, string StoragePath, DateTime UploadedAt);
-
-public interface IFileStorageClient
-{
-    Task<(byte[] FileBytes, string FileName)?> GetSubmissionFileAsync(Guid submissionId);
-
-    Task<List<FileStorageSubmissionDto>> GetAllSubmissionsAsync();
-}
-
-public class FileStorageClient : IFileStorageClient
+public class FileStorageClient
 {
     private readonly HttpClient _http;
     private readonly JsonSerializerOptions _jsonOptions = new() { PropertyNameCaseInsensitive = true };

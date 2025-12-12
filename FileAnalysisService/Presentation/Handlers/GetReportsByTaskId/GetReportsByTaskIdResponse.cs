@@ -1,0 +1,5 @@
+﻿using FileAnalysisService.Presentation.Handlers.GetReportBySubmissionId;
+
+namespace FileAnalysisService.Presentation.Handlers.GetReportsByTaskId;
+
+public record GetReportsByTaskIdResponse(IEnumerable<GetReportResponse> Reports);

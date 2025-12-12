@@ -8,12 +8,12 @@ using FileAnalysisService.Domain.Entities;
 
 namespace FileAnalysisService.Application.Services;
 
-public class AnalysisService
+public class AnalysisService : IAnalysisService
 {
-    private readonly IFileStorageClient _fileClient;
+    private readonly FileStorageClient _fileClient;
     private readonly IReportRepository _repo;
 
-    public AnalysisService(IFileStorageClient fileClient, IReportRepository repo)
+    public AnalysisService(FileStorageClient fileClient, IReportRepository repo)
     {
         _fileClient = fileClient;
         _repo = repo;

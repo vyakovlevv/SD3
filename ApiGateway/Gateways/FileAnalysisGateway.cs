@@ -1,8 +1,16 @@
-﻿using ApiGateway.Services;
+﻿using ApiGateway.Clients;
+using ApiGateway.Services;
 
 namespace ApiGateway.Gateways;
 
-public class FileAnalysisGateway
+public interface IFileAnalysisGateway
+{
+    Task<IResult> Analyze(AddReportRequest request);
+    Task<IResult> GetReport(Guid submissionId);
+    Task<IResult> GetReports(Guid taskId);
+}
+
+public class FileAnalysisGateway : IFileAnalysisGateway
 {
     private readonly ProxyService _proxy;
 
@@ -11,12 +19,12 @@ public class FileAnalysisGateway
         _proxy = proxy;
     }
 
-    public Task<IResult> Analyze(Guid submissionId)
-        => _proxy.ForwardPost($"/analyze/{submissionId}", null);
+    public Task<IResult> Analyze(AddReportRequest request)
+        => _proxy.ForwardPostJson("/reports/upload", request);
 
     public Task<IResult> GetReport(Guid submissionId)
-        => _proxy.ForwardGet($"/reports/{submissionId}");
+        => _proxy.ForwardGet($"/reports/submission/{submissionId}");
 
-    public Task<IResult> GetReports()
-        => _proxy.ForwardGet("/reports");
+    public Task<IResult> GetReports(Guid taskId)
+        => _proxy.ForwardGet($"/reports/task/{taskId}");
 }

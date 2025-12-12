@@ -1,4 +1,5 @@
 using FileStorageService.Application;
+using FileStorageService.Application.Interfaces;
 using FileStorageService.Infrastructure.Clients;
 using FileStorageService.Infrastructure.Data;
 using FileStorageService.Presentation;
@@ -15,7 +16,7 @@ public class Program
         builder.Services.AddDbContext<AppDbContext>(opt =>
             opt.UseSqlite("Data Source=/db/files.db"));
 
-        var analysisBaseUrl = builder.Configuration.GetValue<string>("AnalysisService:BaseUrl")
+        var analysisBaseUrl = builder.Configuration["Services:FileAnalysis"]
                               ?? "http://localhost:5140";
 
         builder.Services.AddHttpClient<AnalysisClient>(client =>
