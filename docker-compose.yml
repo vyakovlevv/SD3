@@ -1,0 +1,18 @@
+﻿services:
+  fileanalisysservice:
+    image: fileanalisysservice
+    build:
+      context: .
+      dockerfile: FileAnalisysService/Dockerfile
+      
+  filestorageservice:
+    image: filestorageservice
+    build:
+      context: .
+      dockerfile: FileStorageService/Dockerfile
+
+  apigateway:
+    image: apigateway
+    build:
+      context: .
+      dockerfile: ApiGateway/Dockerfile
